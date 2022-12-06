@@ -17,7 +17,7 @@ spring:
     #   springboot2以上 com.mysql.jdbc.Driver已被弃用,改用com.mysql.cj.jdbc.Driver
     driver-class-name: com.mysql.cj.jdbc.Driver
     # driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/shoes?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.31.220:3306/bigdata?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     type: com.alibaba.druid.pool.DruidDataSource
     #   数据源其他配置
     initialSize: 5
