@@ -1,7 +1,7 @@
 
 # swagger开启
 swagger:
-  enable: true
+  enable: false
 # 是否停用Knife4j文档
 knife4j:
   production: false
@@ -45,4 +45,4 @@ mybatis:
     map-underscore-to-camel-case: true
   type-aliases-package: com.lx.pojo #mybatis 别名
 server:
-  port: 8081
+  port: 9099

@@ -219,9 +219,6 @@ public class CountUtils {
         //double o3 = countPm2IAQI(pollution.getO3());
         Double[] aqi = {pm2,pm10,no2,so2,co};
         List<Double> list = Arrays.asList(aqi);
-        for (Double aDouble : list) {
-            System.out.println(aDouble);
-        }
         Double max = Collections.max(list);
         return max;
     }
@@ -234,6 +231,46 @@ public class CountUtils {
             doubles[i] = Double.parseDouble(String.format("%.2f", pollutions.get(i)));
         }
         return doubles;
+    }
+
+
+    // 格式化省 例如将黑龙江省格式化成黑龙江 上海市格式化成上海
+    public String formatProvince(String province){
+        // 判断是否包含省
+        if (province.contains("省")){
+            return province.replace("省","");
+        } else if (province.contains("市")){
+            return province.replace("市","");
+        }else if (province.contains("自治区")){
+            // 单独处理内蒙古
+            if (province.contains("内蒙古")){
+                return province.substring(0,3);
+            }
+            return province.substring(0,2);
+        }else if(province.contains("行政区")){
+            return province.substring(0,2);
+        }else {
+            return "";
+        }
+    }
+
+
+    // 格式化城市
+    public String formatCity(String city){
+        // 判断是否包含省
+        if (city.contains("市")) {
+            return city.replace("市", "");
+        } else if (city.contains("自治州")){
+            return city.replace("自治州", "");
+        } else if (city.contains("地区")){
+            return city.replace("地区", "");
+        }else if (city.contains("盟")){
+            return city.replace("盟", "");
+        }else if (city.contains("林区")){
+            return city.replace("林区","");
+        }else {
+            return city;
+        }
     }
 
 

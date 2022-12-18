@@ -19,9 +19,25 @@ public interface PollutionMapper extends BaseMapper<Pollution> {
     @Select("SELECT id,AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc,AVG(lat) as lat,AVG(lon) as lon,province,`month` from info_2013 GROUP BY province")
     public List<Pollution> selectAvgPollutionGroupByProvince();
 
+    // ------------------------------------------------------------------------------
 
-    @Select("SELECT id,AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc,AVG(lat) as lat,AVG(lon) as lon,province,city,`month` from info_2018 GROUP BY city HAVING province = #{name}")
-    List<Pollution> selectCityByName(String name);
+    @Select("SELECT id,AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc,AVG(lat) as lat,AVG(lon) as lon,province,city,`month` from info_2018 where province = #{name} GROUP BY city")
+    List<Pollution> selectCityByName2018(String name);
+
+    @Select("SELECT id,AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc,AVG(lat) as lat,AVG(lon) as lon,province,city,`month` from info_2017 where province = #{name} GROUP BY city")
+    List<Pollution> selectCityByName2017(String name);
+
+    @Select("SELECT id,AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc,AVG(lat) as lat,AVG(lon) as lon,province,city,`month` from info_2016 where province = #{name} GROUP BY city")
+    List<Pollution> selectCityByName2016(String name);
+
+    @Select("SELECT id,AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc,AVG(lat) as lat,AVG(lon) as lon,province,city,`month` from info_2015 where province = #{name} GROUP BY city")
+    List<Pollution> selectCityByName2015(String name);
+
+    @Select("SELECT id,AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc,AVG(lat) as lat,AVG(lon) as lon,province,city,`month` from info_2014 where province = #{name} GROUP BY city")
+    List<Pollution> selectCityByName2014(String name);
+
+    @Select("SELECT id,AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc,AVG(lat) as lat,AVG(lon) as lon,province,city,`month` from info_2013 where province = #{name} GROUP BY city")
+    List<Pollution> selectCityByName2013(String name);
 
     //------------------------------------------------------------------
 
@@ -101,4 +117,89 @@ public interface PollutionMapper extends BaseMapper<Pollution> {
      * */
     @Select("SELECT id,AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc,AVG(lat) as lat,AVG(lon) as lon,`month`,province from info_2018 Group By province")
     List<Pollution> selectAvgCount2018GroupByProvince();
+
+    /*
+    * -----------------------------------------------------------------
+    * */
+
+    /*
+     *  2013年某省平均污染物
+     * */
+    @Select("SELECT AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc from info_2013 where province = #{name}")
+    Pollution selectAvgCount2013ByProvince(String name);
+
+    /*
+     *  2014年某省平均污染物
+     * */
+    @Select("SELECT AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc from info_2014 where province = #{name}")
+    Pollution selectAvgCount2014ByProvince(String name);
+
+    /*
+     *  2015年某省平均污染物
+     * */
+    @Select("SELECT AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc from info_2015 where province = #{name}")
+    Pollution selectAvgCount2015ByProvince(String name);
+
+
+    /*
+     *  2016年某省平均污染物
+     * */
+    @Select("SELECT AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc from info_2016 where province = #{name}")
+    Pollution selectAvgCount2016ByProvince(String name);
+
+
+    /*
+     *  2017年某省平均污染物
+     * */
+    @Select("SELECT AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc from info_2017 where province = #{name}")
+    Pollution selectAvgCount2017ByProvince(String name);
+
+    /*
+     *  2018年某省平均污染物
+     * */
+    @Select("SELECT AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc from info_2018 where province = #{name}")
+    Pollution selectAvgCount2018ByProvince(String name);
+
+
+
+
+
+
+
+    // ----------------------------------------------------------------------
+    /*
+    *  指定省份，获取近六年的城市污染物前十名
+    * */
+    @Select("SELECT id,AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc,province,city from info_2013 where province = #{name} Group By city")
+    List<Pollution> selectAvgCount2013GroupByCity(String name);
+
+    /*
+     *  指定省份，获取近六年的aqi、温度、湿度  2014年
+     * */
+    @Select("SELECT id,AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc,province,city from info_2014 where province = #{name} Group By city")
+    List<Pollution> selectAvgCount2014GroupByCity(String name);
+
+    /*
+     *  指定省份，获取近六年的aqi、温度、湿度  2015年
+     * */
+    @Select("SELECT id,AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc,province,city from info_2015 where province = #{name} Group By city")
+    List<Pollution> selectAvgCount2015GroupByCity(String name);
+
+    /*
+     *  指定省份，获取近六年的aqi、温度、湿度  2016年
+     * */
+    @Select("SELECT id,AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc,province,city from info_2016 where province = #{name} Group By city")
+    List<Pollution> selectAvgCount2016GroupByCity(String name);
+
+    /*
+     *  指定省份，获取近六年的aqi、温度、湿度  2017年
+     * */
+    @Select("SELECT id,AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc,province,city from info_2017 where province = #{name} Group By city")
+    List<Pollution> selectAvgCount2017GroupByCity(String name);
+
+    /*
+     *  指定省份，获取近六年的aqi、温度、湿度  2018年
+     * */
+    @Select("SELECT id,AVG(pm2) as pm2,AVG(pm10) as pm10,AVG(so2) as so2,AVG(no2) as no2,AVG(co) as co,AVG(o3) as o3,AVG(u) as u,AVG(v) as v,AVG(temp) as temp,AVG(rh) as rh,AVG(psfc) as psfc,province,city from info_2018 where province = #{name} Group By city")
+    List<Pollution> selectAvgCount2018GroupByCity(String name);
 }
